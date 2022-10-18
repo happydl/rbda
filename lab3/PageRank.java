@@ -13,7 +13,7 @@ public class PageRank {
             System.exit(-1);
         }
         Configuration conf = new Configuration();
-        conf.set("mapreduce.textoutputformat.separator", " ");
+        conf.set("mapreduce.output.textoutputformat.separator", " ");
 //        Job job = new Job();
         // Job job = new Job();
         Job job = Job.getInstance(conf);
