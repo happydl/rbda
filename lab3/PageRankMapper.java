@@ -28,7 +28,7 @@ public class PageRankMapper
 
 
         String line = value.toString();
-        String[] list = s.split("\\s");
+        String[] list = line.split("\\s");
         // println(list);
         // PR / num_outgoing_edges
         double score = Double.parseDouble(list[list.length - 1]) / (list.length - 2);
