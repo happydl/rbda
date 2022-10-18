@@ -5,14 +5,31 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 public class PageRankReducer
-        extends Reducer<Text, IntWritable, Text, IntWritable> {
+        extends Reducer<Text, Text, Text, Text> {
     @Override
-    public void reduce(Text key, Iterable<IntWritable> values, Context context)
+    public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
-        int maxValue = Integer.MIN_VALUE;
-        for (IntWritable value : values) {
-            maxValue = Math.max(maxValue, value.get());
+        
+        Double pr = 0d;
+        String edgeStr = "";
+
+        for (Text value : values) {
+            String strValue = value.toString();
+            // pr
+            if (strValue.indexOf("_") != -1) {
+                pr += Double.parseDouble(strValue.substring(1));
+            } else {
+                if (edgeStr.length() > 0) {
+                    edgeStr += " ";
+                }
+                edgeStr += strValue;
+            }
         }
-        context.write(key, new IntWritable(maxValue));
+        if (edgeStr.length() > 0) {
+            edgeStr += " ";
+        }
+        edgeStr += String.valueOf(pr);
+        
+        context.write(key, new Text(edgeStr));
     }
 }

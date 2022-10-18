@@ -20,7 +20,7 @@ public class PageRank {
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         job.setMapperClass(PageRankMapper.class);
         job.setReducerClass(PageRankReducer.class);
-        job.setCombinerClass(PageRankReducer.class); //
+        // job.setCombinerClass(PageRankReducer.class);
         job.setNumReduceTasks(1); //
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
