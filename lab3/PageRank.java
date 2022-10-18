@@ -11,7 +11,8 @@ public class PageRank {
             System.err.println("Usage: PageRank <input path> <output path>");
             System.exit(-1);
         }
-        Configuration conf = getConf();
+        // Configuration conf = getConf();
+        Configuration conf = new Configuration();
         conf.set("mapred.textoutputformat.separator", " ");
 //        Job job = new Job();
         // Job job = new Job();
