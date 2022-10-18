@@ -13,15 +13,29 @@ public class PageRankMapper
     @Override
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
+
+
+        // String s = "A B C D E 0.5";
+        // String[] list = s.split("\\s");
+        // println(list);
+        // // outgoing edges
+        // double score = Double.parseDouble(list[list.length - 1]) / (list.length - 2);
+        // println("PR: " + score);
+        // for (int i=1; i<list.length - 1; i++) {
+        //     println(list[0] + ", " + list[i]);
+        //     println(list[i] + "_" + String.valueOf(score));
+        // }
+
+
         String line = value.toString();
-        List<String> list = List.of(line.split("\\s"));
+        String[] list = s.split("\\s");
         // println(list);
         // PR / num_outgoing_edges
-        double score = Double.parseDouble(list.get(list.size() - 1)) / (list.size() - 2);
+        double score = Double.parseDouble(list[list.length - 1]) / (list.length - 2);
         // println("PR: " + score);
-        for (int i=1; i<list.size() - 1; i++) {
-            context.write(new Text(list.get(0)), new Text(list.get(i)));
-            context.write(new Text(list.get(i)), new Text("_" + String.valueOf(score))); // encode double
+        for (int i=1; i<list.length - 1; i++) {
+            context.write(new Text(list[0]), new Text(list[i]));
+            context.write(new Text(list[i]), new Text("_" + String.valueOf(score))); // encode double
         }
     }
 }
