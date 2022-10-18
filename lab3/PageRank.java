@@ -4,6 +4,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.conf;
 
 public class PageRank {
     public static void main(String[] args) throws Exception {
@@ -11,12 +12,11 @@ public class PageRank {
             System.err.println("Usage: PageRank <input path> <output path>");
             System.exit(-1);
         }
-        // Configuration conf = getConf();
         Configuration conf = new Configuration();
         conf.set("mapred.textoutputformat.separator", " ");
 //        Job job = new Job();
         // Job job = new Job();
-        Job job = Job.getInstance();
+        Job job = Job.getInstance(conf);
         job.setJarByClass(PageRank.class);
         job.setJobName("Max temperature");
         FileInputFormat.addInputPath(job, new Path(args[0]));
