@@ -3,6 +3,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.conf.*;
 
@@ -22,7 +23,7 @@ public class CurrencyClean {
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        
+
         job.setMapperClass(CurrencyCleanMapper.class);
         // job.setReducerClass(CurrencyCleanReducer.class);
         // job.setCombinerClass(PageRankReducer.class);
