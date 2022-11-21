@@ -22,7 +22,7 @@ public class CurrencyCleanMapper
 
         String[] list = line.split(",");
 
-        StringBuilder sb = new StringBuilder;
+        StringBuilder sb = new StringBuilder();
         sb.append(list[0]); // slug
         sb.append(",");
         sb.append(list[1]); // date
