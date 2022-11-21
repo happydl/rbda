@@ -24,13 +24,13 @@ public class CurrencyCleanMapper
 
         StringBuilder sb = new StringBuilder;
         sb.append(list[0]); // slug
-        sb.append(",")
+        sb.append(",");
         sb.append(list[1]); // date
-        sb.append(",")
+        sb.append(",");
         sb.append(list[2]); // open
-        sb.append(",")
+        sb.append(",");
         sb.append(list[5]); // close
-        sb.append(",")
+        sb.append(",");
         sb.append(list[6]); // currency
 
         context.write(NullWritable.get(), new Text(sb.toString()));
