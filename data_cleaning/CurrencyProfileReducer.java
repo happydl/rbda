@@ -6,9 +6,9 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 public class CurrencyProfileReducer
-        extends Reducer<Text, Text, Text, Text> {
+        extends Reducer<Text, IntWritable, Text, IntWritable> {
     @Override
-    public void reduce(Text key, Iterable<Text> values, Context context)
+    public void reduce(Text key, Iterable<IntWritable> values, Context context)
             throws IOException, InterruptedException {
         
         int count = 0;
